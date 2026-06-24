@@ -43,13 +43,13 @@ axs[0, 0].set_title("Grafico Vertical")
 # 2. Línea
 axs[0, 1].plot(labels, values, marker="o")
 axs[0, 1].set_title("Grafico Lineal")
-# 3. Pie
+# 3. Circular
 axs[1, 0].pie(values, labels=labels, autopct="%1.1f%%")
 axs[1, 0].set_title("Grafico Circular")
 # 4. Horizontal
 axs[1, 1].barh(labels, values)
 axs[1, 1].set_title("Grafico Horizontal")
-# BORDES NEGROS (IMPORTANTE)
+# Bordes negros
 for ax in axs.flat:
     for spine in ax.spines.values():
         spine.set_visible(True)
@@ -66,7 +66,6 @@ plt.bar(zonas.index, zonas.values)
 plt.title("Top 5 zonas más peligrosas")
 plt.xticks(fontsize=9)
 plt.grid(True, linestyle="--", alpha=0.5)
-# Evita que se pisen los nombres de las calles
 plt.tight_layout()
 plt.show()
 # =========================
@@ -87,7 +86,7 @@ plt.show()
 # =========================
 # GRAFICO 5: HEATMAP (DIA vs HORA)
 # =========================
-# DÍAS EN ESPAÑOL
+# Dias en español
 dias_es = {
     "Monday": "Lunes",
     "Tuesday": "Martes",
@@ -100,10 +99,10 @@ dias_es = {
 df["dia_semana"] = df["fecha"].dt.day_name().map(dias_es)
 # HEATMAP DATA
 tabla = pd.crosstab(df["horas"], df["dia_semana"])
-# orden correcto
+# Orden de los dias
 orden = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
 tabla = tabla.reindex(columns=orden)
-# GRAFICO
+# Grafico
 plt.figure(figsize=(10,6))
 plt.imshow(tabla, cmap="hot", aspect="auto")
 plt.colorbar(label="Accidentes")
